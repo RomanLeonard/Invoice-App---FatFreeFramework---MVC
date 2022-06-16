@@ -1,5 +1,5 @@
 <?php
-    class Model extends \Prefab{
+    class Model{
 
         public function __construct(){
         

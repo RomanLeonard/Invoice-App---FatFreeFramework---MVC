@@ -1,18 +1,12 @@
 <?php
 
-class Invoices extends \Controller{
+class Invoices extends Controller{
 
 	function list_invoices(){
 		$f3 = Base::instance();
-		$model = new \Model\Invoices_model;
-		
-		$db = $f3->get('db.instance');
+		$model = new Invoices_model;
 
-		$invoices_rs = new \DB\SQL\Mapper($db,'invoices');
-
-		$invoices = $invoices_rs->paginate(0, 10, array());
-
-
+		$f3->set('invoices', $model->get_invoices());		
 
 		$f3->set('PAGE_TITLE', 'Index/dashboard');
 		$f3->set('CSS_PATH', 'assets/css/invoices/invoices.css');
