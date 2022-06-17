@@ -1,4 +1,7 @@
 
+html, body{
+    background-color: #f1f1f1;
+}
 *{ font-size: 15px !important; }
 h1{ font-size: 20px !important; }
 
@@ -9,4 +12,50 @@ h1{ font-size: 20px !important; }
 
 .navbar{
     background-color: var(--primary-color) !important;
+}
+
+.page-title{
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.page-content{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.small-text{ font-size: 12px !important; } 
+
+/* TABLE */
+.table tbody tr:hover{
+    background-color: var(--primary-color);
+}
+.table tr td{
+    vertical-align: middle;
+}
+
+/* Table details pop-up */
+.table-details-expanded{
+    position: absolute;
+    box-shadow: 0 0 15px -5px rgba(0,0,0, 0.2);   
+    z-index: 1000;
+}
+.table-details .expand-icon{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table-details .table-details-btn:hover > .expand-icon{ opacity: 1; }
+.table-details-expanded .info{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: space-between;
+    max-width: 380px;
+    min-width: 250px;
 }

@@ -1,7 +1,5 @@
 RewriteEngine On
 
-
-
 RewriteRule ^(app|dict|ns|tmp)\/|\.ini$ - [R=404]
 
 RewriteCond %{REQUEST_FILENAME} !-l

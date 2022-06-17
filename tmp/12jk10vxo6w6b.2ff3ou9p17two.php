@@ -26,7 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Invoices</a>
+            <a class="nav-link active" href="list">invoices</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Clients</a>
@@ -42,7 +42,16 @@
 
 
 
-
+  <div class="row w-50 mx-auto mt-2">
+    <div class="col-12 col-lg-6">
+      <a href="<?= ($BASE) ?>" class="btn btn-outline-secondary align-middle" style="position: absolute; display: flex; align-items: center; justify-content: center; width: 40px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
 
 
   <div class="page-title">
@@ -50,15 +59,21 @@
   </div>
 
   <!-- content -->
+  <div class="page-content">
     <?php echo $this->render($content,NULL,get_defined_vars(),0); ?>
+  </div>
+    
   <!-- ./content -->
 
+  <!-- jquery cdn -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <!-- bootstrap-js -->
   <script src="assets/js/bootstrap/bootstrap.bundle.min.js" type="text/javascript"></script>
   
   <!-- custom js -->
+  <script src="assets/js/code.js" type="text/javascript"></script>
   <?php if ($JS_PATH): ?>
-    <script src="<?= ($JS_PATH) ?>"></script>
+    <script src="<?= ($JS_PATH) ?>" type="text/javascript"></script>
   <?php endif; ?>
   
 </body>

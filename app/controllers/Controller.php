@@ -3,11 +3,14 @@
 class Controller {
 
 	function beforeroute(){
+		
 	}
 
 	function afterroute(){
-		
-		$template = new Template;
-		echo $template->render('template.htm');
+		$f3 = Base::instance();
+		if ($f3->get('AJAX') == false){
+			$template = new Template;
+			echo $template->render('template.htm');
+		}
 	}
 }
