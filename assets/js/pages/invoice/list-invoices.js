@@ -19,7 +19,10 @@ $(document).ready(function(){
             document.write(data.html);
             document.close();
 
-            window.print()
+            setTimeout(function(){
+                window.print()
+            }, 500)
+            
 
         });
     });

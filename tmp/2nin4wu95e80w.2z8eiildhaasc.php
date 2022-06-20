@@ -24,7 +24,7 @@
                 <div class="center">
                     <span class="invoice-title">FACTURA</span>
                     <div class="invoice-det">
-                        <span>Seria {{ @invoice[0]['serial'] }} Numarul {{ str_pad($invoice[0]['number'], @USER_SETTINGS_INVOICE_NUMBER, "0", STR_PAD_LEFT) }}</span>
+                        <span>Seria <?= ($invoice[0]['serial']) ?> Numarul <?= (str_pad($invoice[0]['number'], $USER_SETTINGS_INVOICE_NUMBER, "0", STR_PAD_LEFT)) ?></span>
                         <span>Data (zi/luna/an): 13/06/2022</span>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             </div>        
         </div>
 
-        <div>{{ var_dump(@invoice) }}</div>
+        <div><?= (var_dump($invoice)) ?></div>
 
         <div class="invoice-body">
             <table>

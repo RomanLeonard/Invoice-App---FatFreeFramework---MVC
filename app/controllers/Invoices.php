@@ -88,7 +88,9 @@ class Invoices extends Controller{
 	function pdf_invoice_render(){
 		$f3 = Base::instance();
 		$model = new Invoices_model;
-			
+		$id = $f3->get('GET.invoice_id');
+		$invoice = $model->get_invoice_details_by_id($id);
+		$f3->set('invoice', $invoice);
 		$page['html'] =  \Template::instance()->render('print.htm');
 		echo json_encode($page);
 	}

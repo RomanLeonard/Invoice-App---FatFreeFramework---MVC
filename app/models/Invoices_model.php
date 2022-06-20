@@ -77,4 +77,12 @@ class Invoices_model extends Model{
 
 		return 'success';
 	} // add new invoice to database
+
+
+	function get_invoice_details_by_id($id){
+		$f3 = Base::instance();
+		$db = $f3->get('db.instance');
+		$invoice = $db->exec("SELECT * FROM invoices WHERE id=?", $id);
+		return $invoice;
+	}
 }

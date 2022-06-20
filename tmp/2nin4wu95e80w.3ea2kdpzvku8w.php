@@ -4,13 +4,13 @@
 
             <div class="alert alert-success text-center">
                 <span class="badge rounded-pill text-bg-success" style="font-weight: normal">
-                    <check if="{{ @last_invoice_number >= 1000 }}">
-                        <true><span id="last_invoice_number">{{ @last_invoice_number+1 }}</span></true>
-                        <false>0<span id="last_invoice_number">{{ @last_invoice_number+1 }}</span></false>
-                    </check>    
+                    <?php if ($last_invoice_number >= 1000): ?>
+                        <span id="last_invoice_number"><?= ($last_invoice_number+1) ?></span>
+                        <?php else: ?>0<span id="last_invoice_number"><?= ($last_invoice_number+1) ?></span>
+                    <?php endif; ?>    
                 </span>
                 <span class="badge rounded-pill text-bg-success" style="font-weight: normal">BIZ</span>
-                <span class="badge rounded-pill text-bg-success" style="font-weight: normal">{{ @current_date }}</span>
+                <span class="badge rounded-pill text-bg-success" style="font-weight: normal"><?= ($current_date) ?></span>
             </div>
 
             <div class="card">

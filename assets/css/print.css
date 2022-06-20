@@ -51,6 +51,7 @@ body {
 
 @media print {
     .page {
+        display: block;
         margin: 0;
         overflow: hidden;
     }
@@ -156,28 +157,4 @@ body {
 .invoice-body table tbody .empty-space td{
     border-right: var(--table-border);
     color: #fff;
-}
-
-
-
-.invoice-footer table{
-    padding: 0;
-    margin: 0; 
-    height: 40mm;
-    border-collapse: collapse;
-    border-left: var(--table-border);
-    border-bottom: var(--table-border);
-    border-right: var(--table-border);
-}
-.invoice-footer table tbody td{
-    padding: 0;
-    margin: 0;
-    height: 12mm;
-    border-right: var(--table-border);
-    border-bottom: var(--table-border);
-    text-align: left;
-    vertical-align: top;
-}
-.invoice-footer table tbody td:last-of-type{
-    border-right: none;
 }
