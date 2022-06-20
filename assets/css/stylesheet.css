@@ -1,6 +1,7 @@
 
-html, body{
+body{
     background-color: #f1f1f1;
+    min-height: 100vh;
 }
 *{ font-size: 15px !important; }
 h1{ font-size: 20px !important; }
@@ -21,7 +22,6 @@ h1{ font-size: 20px !important; }
 }
 
 .page-content{
-    width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -59,3 +59,14 @@ h1{ font-size: 20px !important; }
     max-width: 380px;
     min-width: 250px;
 }
+
+/* NOTIFICATION */
+.notification{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 20px;
+    z-index: 1000;
+    cursor: pointer;
+}
+.notification .alert{ box-shadow: 0 5px 15px -5px rgba(0,0,0, 0.25); }

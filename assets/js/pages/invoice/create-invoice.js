@@ -29,18 +29,27 @@ $(document).ready(function(){
     // submit new invoice
     $('#submit-invoice').on('click', function(){
 
-        var items = {};
-        var total_price = 0;
-        $('input[name="invoice_items"]').each(function( index ){
-            var price  = $(this).closest('.row').find('input[name="item_price"]').val()
-         
-            items[$(this).val()] = $(this).closest('.row').find('input[name="item_price"]').val();
-            total_price = total_price + parseFloat(price);
-        });
+        // check if item 2 has value
+        if($('#invoice_items_2').val()){
+            var items = {};
+            var invoices_total_price = 0;
+            $('input[name="invoice_items"]').each(function( index ){
+                var price  = $(this).closest('.row').find('input[name="item_price"]').val()
+                items[$(this).val()] = $(this).closest('.row').find('input[name="item_price"]').val();
+                invoices_total_price = invoices_total_price + parseFloat(price);
+            });
+        }
+        else{
+            var item = $('#invoice_items').val();
+            var price = $('#item_price_1').val();
+            var items = {};
+            items[item] = price;
+        }
 
         $.ajax({
             method: "POST",
             url: "create-invoice-action",
+            dataType: "json",
             data: {
                 AJAX: true,
                 
@@ -56,23 +65,17 @@ $(document).ready(function(){
                 invoice_number: $('#last_invoice_number').text(),
                 invoice_shipping_price: $('input[name="invoice_shipping_price"]').val(),
                 invoice_items: JSON.stringify(items),
-                invoice_total_price: total_price
+                invoices_total_price: invoices_total_price
             }
         })
         .done(function( data ) {
 
-            console.log(data)
-
-            // notification('success', 'Success');
-
-            // $.ajax({
-            // method: "GET",
-            // url: "comp/last_invoice_number.php"
-            // })
-            // .done(function( last_invoice_number ) {
-            // invoice_number = last_invoice_number
-            // $('#last_invoice_number').text( invoice_number );
-            // });
+            if(data == 'success'){
+                notification('success', 'New invoice inserted successfuly.');
+                setTimeout(function(){
+                    location.reload();
+                }, 1500)
+            } else{ notification('danger', 'An error has occured.'); }
         });
 
     });

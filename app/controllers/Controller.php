@@ -12,5 +12,9 @@ class Controller {
 			$template = new Template;
 			echo $template->render('template.htm');
 		}
+		elseif ($f3->get('PRINT_PAGE')) {
+			$template = new Template;
+			echo $template->render('print.htm');
+		}
 	}
 }

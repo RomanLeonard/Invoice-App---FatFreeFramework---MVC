@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    console.log('-code.js-')
-
-
+   
     $('.table-details .table-details-expanded').css('display', 'none');
     $(document).on('click', '.table-details-btn', function(){
         var element = $(this).closest('.table-details').find('.table-details-expanded');
@@ -15,6 +13,4 @@ $(document).ready(function(){
         });
     });
 
-
-    console.log('-x-code.js-x-')
 });

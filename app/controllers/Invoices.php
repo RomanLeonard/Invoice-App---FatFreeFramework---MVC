@@ -11,6 +11,8 @@ class Invoices extends Controller{
 		$f3->set('PAGE_TITLE', 'Invoices list');
 		$f3->set('CSS_PATH', 'assets/css/invoices/invoices.css');
 		$f3->set('JS_PATH', 'assets/js/pages/invoice/list-invoices.js');
+
+		$f3->set('title_utility','page-utility/invoice/util_list_invoice_view.php');
 		$f3->set('content','pages/invoice/list_invoices_view.php');
 	}
 
@@ -24,9 +26,11 @@ class Invoices extends Controller{
 		$f3->set('last_invoice_number', $model->get_last_invoice_number());
 		$f3->set('current_date', date('d-m-Y'));
 
-		$f3->set('PAGE_TITLE', 'New invoice - REMEMBER TO SET PAGE REFRESH AFTER SAVE');
+		$f3->set('PAGE_TITLE', 'New invoice');
 		$f3->set('CSS_PATH', 'assets/css/invoices/invoices.css');
 		$f3->set('JS_PATH', 'assets/js/pages/invoice/create-invoice.js');
+		
+		$f3->set('title_utility','page-utility/invoice/util_create_invoice_view.php');
 		$f3->set('content','pages/invoice/create_invoice_view.php');
 		
 	}
@@ -53,7 +57,7 @@ class Invoices extends Controller{
 			$invoice_number		    = $f3->get("POST.invoice_number");
 			$invoice_shipping_price = $f3->get("POST.invoice_shipping_price");
 			$invoice_items		    = $f3->get("POST.invoice_items");
-			$invoice_total_price	= $f3->get("POST.invoice_total_price");
+			$invoices_total_price	= $f3->get("POST.invoices_total_price");
 
 			$new_invoice = $model->add_invoice_action(
 				$client_name,
@@ -68,7 +72,7 @@ class Invoices extends Controller{
 				$invoice_number,
 				$invoice_shipping_price,
 				$invoice_items,
-				$invoice_total_price
+				$invoices_total_price
 			);
 
 			echo json_encode($new_invoice);
@@ -80,5 +84,13 @@ class Invoices extends Controller{
 		
 	}
 
+	// PRINT INVOICE
+	function pdf_invoice_render(){
+		$f3 = Base::instance();
+		$model = new Invoices_model;
+			
+		$page['html'] =  \Template::instance()->render('print.htm');
+		echo json_encode($page);
+	}
 
 }
