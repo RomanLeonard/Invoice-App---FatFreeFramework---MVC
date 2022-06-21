@@ -10,22 +10,20 @@
                                 <th style="min-width: 100px;">Number</th>
                                 <th style="min-width: 150px;">Date</th>
                                 <th style="min-width: 300px;">Client</th>
-                                <th style="min-width: 150px;">Items</th>
+                                <th style="min-width: 170px; max-width: 171px;">Items</th>
                                 <th style="min-width: 100px;">Shipping price</th>
                                 <th style="min-width: 100px;">Total price</th>
-                                <th style="min-width: 210px;">Options</th>
+                                <th style="min-width: 270px; max-width: 271px; width: 270px;">Options</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach (($invoices['subset']?:[]) as $invoice): ?>
                             <?php $client_JSON = $invoice->client;
-                            $decodedText = html_entity_decode($client_JSON);  
-                            $client = json_decode($decodedText, true);
-
-                            $items_JSON = $invoice->items;
-                            $decodedText_item = html_entity_decode($items_JSON);  
-                            $items_raw = json_decode($decodedText_item, true);
-                            $items = json_decode($items_raw); ?>
+                                $decodedText = html_entity_decode($client_JSON);  
+                                $client = json_decode($decodedText, true);
+                                $items_JSON = $invoice->items;
+                                $decodedText = html_entity_decode($items_JSON);  
+                                $items = json_decode($decodedText, true); ?>
                                 <tr>
                                     <td>
                                         <div style="display:flex;align-items:center;">
@@ -33,7 +31,7 @@
                                             <span class="small-text" style="margin-left: 5px;"><?= ($invoice->serial) ?></span>
                                         </div>
                                     </td>
-                                    <td><?= ($invoice->date) ?></td>
+                                    <td><?= (date('d/m/Y', strtotime($invoice->date))) ?></td>
                                     <td class="table-details">
                                         <div class="table-details-expanded">
                                             <div class="card">
@@ -51,9 +49,9 @@
                                                             <span>ONRC:</span>
                                                             <span style="text-align:right;"><?= ($client['onrc']) ?></span>
                                                         <?php endif; ?>
-                                                        <?php if ($client['mobile'] != ''): ?>
-                                                            <span>Mobile:</span>
-                                                            <span style="text-align:right;"><?= ($client['mobile']) ?></span>
+                                                        <?php if ($client['phone'] != ''): ?>
+                                                            <span>Phone:</span>
+                                                            <span style="text-align:right;"><?= ($client['phone']) ?></span>
                                                         <?php endif; ?>
                                                         <?php if ($client['email'] != ''): ?>
                                                             <span>Email:</span>
@@ -85,14 +83,16 @@
                                         <div class="table-details-expanded">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <div class="info">
-                                                        <?php $ctr=0; foreach (($items?:[]) as $item_name=>$item_price): $ctr++; ?>
+                                                    <div class="info" style="grid-template-columns: 2fr 1fr 1fr; align-items: center;">
+                                                        <?php $ctr=0; foreach (($items?:[]) as $item): $ctr++; ?>
                                                             <?php if($ctr == 1){  
-                                                                $first_item_name = $item_name;
-                                                                $first_item_price = $item_price;
+                                                                $first_item_name = $item['item_name'];
+                                                                $first_item_price = $item['item_price'];
                                                             } ?>
-                                                            <span><?= ($item_name) ?></span>
-                                                            <span style="text-align:right;"><?= ($item_price) ?></span>
+
+                                                            <span><?= ($item['item_name']) ?> </span>
+                                                            <span class="small-text"> - <?= ($item['item_qty']) ?> - <?= ($item['item_um']) ?></span>
+                                                            <span style="text-align:right;"><?= ($item['item_price']) ?></span>
                                                         <?php endforeach; ?>
                                                     </div>
                                                 </div>

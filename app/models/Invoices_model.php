@@ -82,7 +82,16 @@ class Invoices_model extends Model{
 	function get_invoice_details_by_id($id){
 		$f3 = Base::instance();
 		$db = $f3->get('db.instance');
-		$invoice = $db->exec("SELECT * FROM invoices WHERE id=?", $id);
-		return $invoice;
+		$rs = $db->exec("SELECT * FROM invoices WHERE id=?", $id);
+
+		$client  = json_decode($rs[0]['client']);
+		$invoice = $rs[0];
+		$items   = json_decode($rs[0]['items']);
+
+		$invoice_print['invoice'] = $invoice;
+		$invoice_print['client']  = $client;
+		$invoice_print['items']   = $items;
+ 
+		return $invoice_print;
 	}
 }

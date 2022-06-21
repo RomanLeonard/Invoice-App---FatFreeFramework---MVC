@@ -52,7 +52,6 @@ class Invoices extends Controller{
 			$client_bank 	= $f3->get("POST.client_bank");
 			$client_email 	= $f3->get("POST.client_email");
 
-
 			// invoice details
 			$invoice_number		    = $f3->get("POST.invoice_number");
 			$invoice_shipping_price = $f3->get("POST.invoice_shipping_price");

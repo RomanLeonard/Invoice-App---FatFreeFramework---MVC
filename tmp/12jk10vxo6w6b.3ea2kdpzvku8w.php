@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content mb-5">
     <div class="row">
         <div class="col-12 col-lg-6 mx-auto">
 
@@ -82,35 +82,65 @@
 
                     <!-- invoice items -->
                     <div class="items-body">
-                        <div class="row">
-                            <div class="col-12 col-lg-9">
+                        <div class="row invoice-item-row">
+                            <div class="col-12 col-lg-6">
                                 <!-- item -->
-                                <label for="invoice_items" class="form-label">item 1</label>
+                                <label for="item_name" class="form-label">item 1</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="invoice_items" name="invoice_items">
+                                    <input type="text" class="form-control" id="item_name" name="item_name">
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3">
-                                <!-- item price -->
-                                <label for="item_price_1" class="form-label">price for item 1</label>
+                            <div class="col-3 col-lg-2">
+                                <!-- unit measurement -->
+                                <label for="item_um" class="form-label">u.m.</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="item_price_1" name="item_price">
+                                    <input type="text" class="form-control" id="item_um" name="item_um">
+                                </div>
+                            </div>
+                            <div class="col-3 col-lg-2">
+                                <!-- quantity -->
+                                <label for="item_qty" class="form-label">qty.</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="item_qty" name="item_qty">
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-2">
+                                <!-- price -->
+                                <label for="item_price" class="form-label">price</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="item_price" name="item_price">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-9">
+                        
+
+                        <div class="row invoice-item-row">
+                            <div class="col-12 col-lg-6">
                                 <!-- item -->
-                                <label for="invoice_items_2" class="form-label">item 2</label>
+                                <label for="item_name" class="form-label">item 2</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="invoice_items_2" name="invoice_items">
+                                    <input type="text" class="form-control" id="item_name" name="item_name">
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3">
-                                <!-- item price -->
-                                <label for="item_price_2" class="form-label">price for item 2</label>
+                            <div class="col-3 col-lg-2">
+                                <!-- unit measurement -->
+                                <label for="item_um" class="form-label">u.m.</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="item_price_2" name="item_price">
+                                    <input type="text" class="form-control" id="item_um" name="item_um">
+                                </div>
+                            </div>
+                            <div class="col-3 col-lg-2">
+                                <!-- quantity -->
+                                <label for="item_qty" class="form-label">qty.</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="item_qty" name="item_qty">
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-2">
+                                <!-- price -->
+                                <label for="item_price" class="form-label">price</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="item_price" name="item_price">
                                 </div>
                             </div>
                         </div>
