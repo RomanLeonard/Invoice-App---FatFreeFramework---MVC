@@ -1,42 +1,97 @@
 $(document).ready(function(){
 
-    
+    // client autocomplete
+    $('.client-name-suggestion').css('display', 'none');
+    $('input[name="client_name"]').keyup(function(){
+        $('.client-name-suggestion').html("");
+
+        // close suggestion on outside click
+        $('body').on('click', function(e){ 
+        if (!$(e.target).closest('.client-name-suggestion').length) { $('.client-name-suggestion').css('display', 'none');}});
+
+
+		$.ajax({
+		type: "POST",
+		url: "clients/autocomplete",
+		data: {
+            'AJAX': true,
+            'name': $(this).val()
+        },
+		success: function(data){
+            var clients = JSON.parse(data);
+
+			$('.client-name-suggestion').css('display', 'block');
+
+            $.each(clients,function( index ) {
+                $('.client-name-suggestion').append(`
+                    <div class="item">
+                        <input type="hidden" name="client_autocomplete_index" value="`+index+`">
+                        <span>`+clients[index].name+`</span>
+                        <span class="small-text">`+clients[index].address+`</span>
+                        <span><span class="small-text">TEL-</span>`+clients[index].mobile+`</span>
+                        <span><span class="small-text">CUI-</span>`+clients[index].cui+`</span>
+                    </div>
+                `)
+            });
+
+            $(document).on('click', '.client-name-suggestion .item', function(){
+                // get client clicked index
+                var index = $(this).children('input[name="client_autocomplete_index"]').val();
+                // autocomplete all client fields with value
+                $('input[name="client_name"]').val(clients[index].name)
+                $('input[name="client_address"]').val(clients[index].address)
+                $('input[name="client_cui"]').val(clients[index].cui)
+                $('input[name="client_onrc"]').val(clients[index].onrc)
+                $('input[name="client_phone"]').val(clients[index].mobile)
+                $('input[name="client_iban"]').val(clients[index].iban)
+                $('input[name="client_bank"]').val(clients[index].bank)
+                $('input[name="client_email"]').val(clients[index].email)
+            })
+
+		}
+		});
+	});
 
     var invoice_items = 2;
     $(document).on('click', '.invoice-add-item-btn', function(){
         invoice_items++;
-        $('.items-body').append(`
-            <div class="row invoice-item-row">
-                <div class="col-12 col-lg-6">
-                    <!-- item -->
-                    <label for="item_name" class="form-label">item `+invoice_items+`</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="item_name" name="item_name">
+        
+        if(invoice_items <= 15){
+            $('.items-body').append(`
+                <div class="row invoice-item-row">
+                    <div class="col-12 col-lg-6">
+                        <!-- item -->
+                        <label for="item_name" class="form-label">item `+invoice_items+`</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="item_name" name="item_name">
+                        </div>
+                    </div>
+                    <div class="col-3 col-lg-2">
+                        <!-- unit measurement -->
+                        <label for="item_um" class="form-label">u.m.</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="item_um" name="item_um" placeholder="buc.">
+                        </div>
+                    </div>
+                    <div class="col-3 col-lg-2">
+                        <!-- quantity -->
+                        <label for="item_qty" class="form-label">qty.</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="item_qty" name="item_qty" placeholder="1">
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-2">
+                        <!-- price -->
+                        <label for="item_price" class="form-label">price</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="item_price" name="item_price">
+                        </div>
                     </div>
                 </div>
-                <div class="col-3 col-lg-2">
-                    <!-- unit measurement -->
-                    <label for="item_um" class="form-label">u.m.</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="item_um" name="item_um">
-                    </div>
-                </div>
-                <div class="col-3 col-lg-2">
-                    <!-- quantity -->
-                    <label for="item_qty" class="form-label">qty.</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="item_qty" name="item_qty">
-                    </div>
-                </div>
-                <div class="col-6 col-lg-2">
-                    <!-- price -->
-                    <label for="item_price" class="form-label">price</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="item_price" name="item_price">
-                    </div>
-                </div>
-            </div>
-        `)
+            `)
+        } else{
+            notification('danger', 'You can add only 15 items.')
+        }
     });
 
 
@@ -49,8 +104,8 @@ $(document).ready(function(){
         $.each( $('.invoice-item-row'), function( index, record ){
             if($(this).find('input[name="item_name"]').val() != ''){
                 var item_name  = $(this).find('input[name="item_name"]').val();
-                var item_um    = $(this).find('input[name="item_um"]').val();
-                var item_qty   = $(this).find('input[name="item_qty"]').val();
+                var item_um    = ( $(this).find('input[name="item_um"]').val() ) ? $(this).find('input[name="item_um"]').val() : 'buc.';
+                var item_qty   = ( $(this).find('input[name="item_qty"]').val() ) ? $(this).find('input[name="item_qty"]').val() : 1;
                 var item_price = $(this).find('input[name="item_price"]').val();
             
                 var item = {
@@ -82,7 +137,7 @@ $(document).ready(function(){
                 'client_email': ( $('input[name="client_email"]').val() ) ? $('input[name="client_email"]').val() : '',
 
                 'invoice_number': $('#last_invoice_number').text(),
-                'invoice_shipping_price': $('input[name="invoice_shipping_price"]').val(),
+                'invoice_shipping_price': ( $('input[name="invoice_shipping_price"]').val() ) ? $('input[name="invoice_shipping_price"]').val() : 0,
 
                 'invoice_items': items,
                 'invoices_total_price': invoices_total_price

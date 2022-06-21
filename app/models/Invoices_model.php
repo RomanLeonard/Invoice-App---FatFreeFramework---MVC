@@ -2,11 +2,11 @@
 
 class Invoices_model extends Model{
 
-	function get_invoices(){
+	function get_invoices($page){
 		$f3 = Base::instance();
 		$db = $f3->get('db.instance');
 		$invoices_rs = new DB\SQL\Mapper($db,'invoices');
-		$invoices = $invoices_rs->paginate(0, 10, array());
+		$invoices = $invoices_rs->paginate($page-1, 20, array(), array('order'=>'date DESC'));
 		
         return $invoices;
 	} // get invoices list
@@ -40,16 +40,19 @@ class Invoices_model extends Model{
 
 		// client table
 		$rs_client = new DB\SQL\Mapper($db,'clients');
-		$rs_client->name    = $client_name;
-		$rs_client->cui 	= $client_cui;
-		$rs_client->onrc 	= $client_onrc;
-		$rs_client->address = $client_address;
-		$rs_client->iban 	= $client_iban;
-		$rs_client->bank 	= $client_bank;
-		$rs_client->mobile 	= $client_phone;
-		$rs_client->email 	= $client_email;
-		$rs_client->save();
-		$rs_client->reset();
+		$rs_client->load(array('name=?', $client_name));
+		if($rs_client->dry()){
+			$rs_client->name    = $client_name;
+			$rs_client->cui 	= $client_cui;
+			$rs_client->onrc 	= $client_onrc;
+			$rs_client->address = $client_address;
+			$rs_client->iban 	= $client_iban;
+			$rs_client->bank 	= $client_bank;
+			$rs_client->mobile 	= $client_phone;
+			$rs_client->email 	= $client_email;
+			$rs_client->save();
+			$rs_client->reset();
+		} else{ $rs_client->reset(); }
 		
 		$client = [
 			"name" => $client_name,
@@ -93,5 +96,12 @@ class Invoices_model extends Model{
 		$invoice_print['items']   = $items;
  
 		return $invoice_print;
+	}
+
+	function get_client_for_autocomplete($name){
+		$f3 = Base::instance();
+		$db = $f3->get('db.instance');
+		$rs = $db->exec("SELECT * FROM `clients` WHERE `name` LIKE '%$name%' LIMIT 6");
+		return $rs;
 	}
 }

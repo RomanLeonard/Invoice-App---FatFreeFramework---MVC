@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/print.css">
-    <title>PRINT</title>
+    <title>Factura<?= ($invoice['invoice']['serial']) ?><?= (str_pad($invoice['invoice']['number'], $USER_SETTINGS_INVOICE_NUMBER, "0", STR_PAD_LEFT)) ?></title>
     
 </head>
 <body>
@@ -165,7 +165,7 @@
                 </div>
             </div>
         </div>
-        <span style="font-size: 11px;">Conform art. 319 alin. (29) din Legea nr. 227/2015 privind Codul Fiscal, factura este valabila fara semnatura si stampila.</span>
+        <span style="font-size: 13px;">Conform art. 319 alin. (29) din Legea nr. 227/2015 privind Codul Fiscal, factura este valabila fara semnatura si stampila.</span>
         
     </div>
 </body>

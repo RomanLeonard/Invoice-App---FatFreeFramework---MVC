@@ -6,7 +6,12 @@ class Invoices extends Controller{
 		$f3 = Base::instance();
 		$model = new Invoices_model;
 
-		$f3->set('invoices', $model->get_invoices());		
+		if($f3->get('GET.page')){
+			$page = $f3->get('GET.page');
+		} else { $page = 1; }
+
+		$f3->set('invoices', $model->get_invoices($page));
+		$f3->set('current_page', $page);	
 
 		$f3->set('PAGE_TITLE', 'Invoices list');
 		$f3->set('CSS_PATH', 'assets/css/invoices/invoices.css');
@@ -92,6 +97,18 @@ class Invoices extends Controller{
 		$f3->set('invoice', $invoice);
 		$page['html'] =  \Template::instance()->render('print.htm');
 		echo json_encode($page);
+	}
+
+
+	// CLIENT DATA AUTOCOMPLETE
+	function autocomplete(){
+		$f3 = Base::instance();
+		$model = new Invoices_model;
+		$name = $f3->get('POST.name');
+
+		$clients = $model->get_client_for_autocomplete($name);
+
+		echo json_encode($clients);
 	}
 
 }

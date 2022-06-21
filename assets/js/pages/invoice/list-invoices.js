@@ -19,9 +19,9 @@ $(document).ready(function(){
             document.write(data.html);
             document.close();
 
-            // setTimeout(function(){
-            //     window.print()
-            // }, 500)
+            setTimeout(function(){
+                window.print()
+            }, 500)
             
 
         });

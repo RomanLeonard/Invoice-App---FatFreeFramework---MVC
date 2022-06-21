@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row list-invoices mb-5">
     <div class="col-12 col-lg-11 mx-auto">
         <div class="card">
             
@@ -37,34 +37,51 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="info">
-                                                        <span>Name:</span>
-                                                        <span style="text-align:right;"><?= ($client['name']) ?></span>
-                                                        <span>Address:</span>
-                                                        <span style="text-align:right;"><?= ($client['address']) ?></span>
+                                                        <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
+                                                            <span>Name:</span>
+                                                            <span style="text-align:right;"><?= ($client['name']) ?></span>
+                                                        </div>
+                                                        <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
+                                                            <span>Address:</span>
+                                                            <span style="text-align:right;"><?= ($client['address']) ?></span>
+                                                        </div>
                                                         <?php if ($client['cui'] != ''): ?>
-                                                            <span>CUI:</span>
-                                                            <span style="text-align:right;"><?= ($client['cui']) ?></span>
+                                                            <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
+                                                                <span>CUI:</span>
+                                                                <span style="text-align:right;"><?= ($client['cui']) ?></span>
+                                                            </div>
                                                         <?php endif; ?>
                                                         <?php if ($client['onrc'] != ''): ?>
-                                                            <span>ONRC:</span>
-                                                            <span style="text-align:right;"><?= ($client['onrc']) ?></span>
+                                                            <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
+                                                                <span>ONRC:</span>
+                                                                <span style="text-align:right;"><?= ($client['onrc']) ?></span>
+                                                            </div>
                                                         <?php endif; ?>
                                                         <?php if ($client['phone'] != ''): ?>
-                                                            <span>Phone:</span>
-                                                            <span style="text-align:right;"><?= ($client['phone']) ?></span>
+                                                            <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
+                                                                <span>Phone:</span>
+                                                                <span style="text-align:right;"><?= ($client['phone']) ?></span>
+                                                            </div>
                                                         <?php endif; ?>
                                                         <?php if ($client['email'] != ''): ?>
-                                                            <span>Email:</span>
-                                                            <span style="text-align:right;"><?= ($client['email']) ?></span>
+                                                            <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
+                                                                <span>Email:</span>
+                                                                <span style="text-align:right;"><?= ($client['email']) ?></span>
+                                                            </div>
                                                         <?php endif; ?>
                                                         <?php if ($client['iban'] != ''): ?>
-                                                            <span>IBAN:</span>
-                                                            <span style="text-align:right;"><?= ($client['iban']) ?></span>
+                                                            <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
+                                                                <span>IBAN:</span>
+                                                                <span style="text-align:right;"><?= ($client['iban']) ?></span>
+                                                            </div>
                                                         <?php endif; ?>
                                                         <?php if ($client['bank'] != ''): ?>
-                                                            <span>Bank:</span>
-                                                            <span style="text-align:right;"><?= ($client['bank']) ?></span>
+                                                            <div style="display: grid; grid-template-columns: 1fr 3fr;">
+                                                                <span>Bank:</span>
+                                                                <span style="text-align:right;"><?= ($client['bank']) ?></span>
+                                                            </div>
                                                         <?php endif; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,15 +106,15 @@
                                                                 $first_item_name = $item['item_name'];
                                                                 $first_item_price = $item['item_price'];
                                                             } ?>
-
-                                                            <span><?= ($item['item_name']) ?> </span>
-                                                            <span class="small-text"> - <?= ($item['item_qty']) ?> - <?= ($item['item_um']) ?></span>
-                                                            <span style="text-align:right;"><?= ($item['item_price']) ?></span>
+                                                            <div style="display: grid; grid-template-columns: 3fr 1fr 1fr; border-bottom: 0.5px solid #ddd; align-items: center;">
+                                                                <span><?= ($item['item_name']) ?> </span>
+                                                                <span class="small-text"> - <?= ($item['item_qty']) ?> - <?= ($item['item_um']) ?></span>
+                                                                <span style="text-align:right;"><?= ($item['item_price']) ?></span>
+                                                            </div>
                                                         <?php endforeach; ?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                         <div class="btn btn-outline table-details-btn" style="display: block; width: 100%; text-align: left; position: relative;">
                                             <span style="display: block;"><?= ((@$first_item_name) ? $first_item_name : "no item") ?></span>
@@ -112,10 +129,12 @@
                                     <td><span><?= ($invoice->price_total) ?></span></td>
                                     <td>
                                         <input type="hidden" name="invoice_id" value="<?= ($invoice->id) ?>">
-                                        <div style="width: 100%; text-align: right">
-                                            <a class="btn btn-outline-primary" href="#">edit</a>
-                                            <a class="btn btn-outline-dark" href="#">storno</a>
-                                            <a class="btn btn-outline-danger" href="#">cancel</a>
+                                        <div style="width: 100%; text-align: left">
+                                            <div class="btn-group" role="group">
+                                                <a class="btn btn-outline-primary" href="#">edit</a>
+                                                <a class="btn btn-outline-dark" href="#" style="margin-right: 4px; margin-left: 4px;">storno</a>
+                                                <a class="btn btn-outline-danger" href="#">cancel</a>
+                                            </div>
                                             <a class="btn btn-success print-page-btn" style="margin-left: 15px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                                                     <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
@@ -136,3 +155,64 @@
         </div>
     </div>
 </div>
+
+
+<div class="row mb-5">
+    <div class="col-12" style="display: flex; justify-content: center">
+        <!-- pagination -->
+        <nav>
+            <?php $pagination_from = 0; ?>
+            <?php $pagination_to = 10; ?>
+
+            <ul class="pagination">
+            
+                    <?php if ($current_page <= 1): ?>
+                    
+                        <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">&#129120;</a>
+                    
+                    <?php else: ?>
+                        <li class="page-item"><a class="page-link" href="?page=<?= ($current_page-1) ?>">Prev</a></li>
+                        <li class="page-item"><a class="page-link" href="?page=1">&#129120;</a>
+                    
+                    <?php endif; ?>
+
+                    <?php if ($current_page > 4): ?>
+                    <?php $loop_start = $current_page-3; $loop_to = $current_page+3; ?>
+                    <?php else: ?><?php $loop_start = 1; $loop_to = 7; ?>
+                    <?php endif; ?>
+                    <?php for ($i=$loop_start;$i<$invoices['count']+1;$i++): ?>
+                    <?php if ($i <= $loop_to): ?>
+                        <?php if ($i == $current_page): ?>
+                            
+                            <li class="page-item active">
+                                <a class="page-link" href="?page=<?= ($i) ?>"><?= ($i) ?></a>
+                            </li>
+                            
+                            <?php else: ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?page=<?= ($i) ?>"><?= ($i) ?></a>
+                            </li>
+                            
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php endfor; ?>
+                    
+                    <?php if ($current_page >= $invoices['count']): ?>
+                    
+                        <li class="page-item next disabled"><a class="page-link" href="#">&#129122;</a>
+                        <li class="page-item next disabled"><a class="page-link" href="#">Next</a>
+                    
+                    <?php else: ?>
+                        <li class="page-item next"><a class="page-link" href="?page=<?= ($invoices['count']) ?>">&#129122;</a>
+                        <li class="page-item next"><a class="page-link" href="?page=<?= ($current_page+1) ?>">Next</a>
+                    
+                    <?php endif; ?>
+               
+            </ul>
+        </nav>
+        <!-- ./pagination -->
+    </div>
+</div>
+
+

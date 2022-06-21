@@ -35,7 +35,7 @@ body {
 }
 
 @media screen {
-    .page::after {
+    /* .page::after {
         position: absolute;
         content: '';
         top: 0;
@@ -46,7 +46,7 @@ body {
         outline: thin dashed black;
         pointer-events: none;
         z-index: 9999;
-    }
+    } */
 }
 
 @media print {
@@ -147,8 +147,8 @@ body {
 .invoice-body table tbody .item td{
     min-height: 10mm;
     max-height: 10mm;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
     border-right: var(--table-border);
 }
 .invoice-body table tbody .item td:last-of-type{border-right: none;}
