@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2022 at 05:07 PM
+-- Generation Time: Jun 21, 2022 at 04:57 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -20,32 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `invoices_db`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clients`
---
-
-CREATE TABLE `clients` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `cui` varchar(25) DEFAULT NULL,
-  `onrc` varchar(100) DEFAULT NULL,
-  `address` text NOT NULL,
-  `iban` varchar(255) DEFAULT NULL,
-  `bank` varchar(255) DEFAULT NULL,
-  `mobile` varchar(100) DEFAULT NULL,
-  `email` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `clients`
---
-
-INSERT INTO `clients` (`id`, `name`, `cui`, `onrc`, `address`, `iban`, `bank`, `mobile`, `email`) VALUES
-(170, 'test', '', '', 'aetaet', '', '', '', ''),
-(171, 'test', '', '', 'aetaet', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -70,20 +44,11 @@ CREATE TABLE `invoices` (
 --
 
 INSERT INTO `invoices` (`id`, `serial`, `client`, `number`, `date`, `items`, `shipping_price`, `price_total`, `status`) VALUES
-(92, 'BIZ', '{\"name\":\"test name\",\"address\":\"Str. Soseaua urziceni nr. 30, maia, Ialomita\",\"client_cui\":\"1234567\",\"client_onrc\":\"j21\\/30\\/2020\",\"client_phone\":\"1353195315\",\"client_iban\":\"RO1331513531535135\",\"client_bank\":\"IGM.\",\"client_email\":\"email@email.com\"}', 1, '2022-06-17', '\"items\"', '19.99', '2', 'normal'),
-(122, 'BIZ', '{\"name\":\"123\",\"address\":\"123\",\"cui\":\"\",\"onrc\":\"\",\"phone\":\"\",\"iban\":\"\",\"bank\":\"\",\"email\":\"\"}', 12, '2022-06-17', '\"{\\\"tea\\\":\\\"1\\\",\\\"teas\\\":\\\"2\\\"}\"', '', '3', 'normal'),
-(123, 'BIZ', '{\"name\":\"test\",\"address\":\"aetaet\",\"cui\":\"\",\"onrc\":\"\",\"phone\":\"\",\"iban\":\"\",\"bank\":\"\",\"email\":\"\"}', 133, '2022-06-17', '\"{\\\"\\\":\\\"\\\"}\"', '', '0', 'normal'),
-(124, 'BIZ', '{\"name\":\"test\",\"address\":\"aetaet\",\"cui\":\"\",\"onrc\":\"\",\"phone\":\"\",\"iban\":\"\",\"bank\":\"\",\"email\":\"\"}', 1321, '2022-06-17', '\"{\\\"\\\":\\\"\\\"}\"', '', '0', 'normal');
+(147, 'BIZ', '{\"name\":\"SUPERLEATHER PROD SRL\",\"address\":\"Sos. Pantelimon 291A Bl. 9A Sc. B Et. 6 Ap. 50\",\"cui\":\"44965348\",\"onrc\":\"J40\\/16645\\/2021\",\"phone\":\"0733488555\",\"iban\":\"\",\"bank\":\"\",\"email\":\"\"}', 210, '2022-06-13', '[{\"item_name\":\"Prestari servicii\",\"item_um\":\"buc\",\"item_qty\":\"1\",\"item_price\":\"2000\"}]', '0', '2000', 'normal');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `clients`
---
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `invoices`
@@ -96,16 +61,10 @@ ALTER TABLE `invoices`
 --
 
 --
--- AUTO_INCREMENT for table `clients`
---
-ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
-
---
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
