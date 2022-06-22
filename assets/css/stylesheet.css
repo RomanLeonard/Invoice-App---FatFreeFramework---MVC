@@ -15,11 +15,23 @@ h1{ font-size: 20px !important; }
 .navbar{
     background-color: var(--primary-color) !important;
 }
+.navbar .nav-link.active{
+    text-decoration: underline;
+}
 
 .page-title{
     width: 100%;
     text-align: center;
     padding: 20px 0;
+}
+.page-title .title span{
+    height: 100%;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px !important;
 }
 
 .page-content{
@@ -47,7 +59,7 @@ h1{ font-size: 20px !important; }
 .table-details-expanded{
     position: absolute;
     box-shadow: 0 0 15px -5px rgba(0,0,0, 0.2);   
-    z-index: 1000;
+    z-index: 10000 !important;
 }
 .table-details .expand-icon{
     position: absolute;

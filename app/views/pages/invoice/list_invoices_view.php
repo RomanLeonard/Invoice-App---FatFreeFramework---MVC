@@ -1,5 +1,5 @@
-<div class="row list-invoices mb-5">
-    <div class="col-12 col-lg-11 mx-auto">
+<div class="row list-invoices mb-5 px-2">
+    <div class="col-12 col-lg-12 mx-auto">
         <div class="card">
             
             <div class="card-body">
@@ -9,11 +9,11 @@
                             <tr>
                                 <th style="min-width: 100px;">Number</th>
                                 <th style="min-width: 150px;">Date</th>
-                                <th style="min-width: 300px;">Client</th>
-                                <th style="min-width: 170px; max-width: 171px;">Items</th>
+                                <th style="min-width: 320px;">Client</th>
+                                <th style="min-width: 230px; max-width: 231px;">Items</th>
                                 <th style="min-width: 100px;">Shipping price</th>
                                 <th style="min-width: 100px;">Total price</th>
-                                <th style="min-width: 270px; max-width: 271px; width: 270px;">Options</th>
+                                <th style="min-width: 280px; max-width: 281px; width: 280px;">Options</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -170,11 +170,19 @@
                     <check if="{{ @current_page <= 1 }}">
                     <true>
                         <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#">&#129120;</a>
+                        <li class="page-item disabled"><a class="page-link" href="#" style="display: flex; align-items: center; height: 100%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                            </svg> <!-- left arrow -->
+                        </a></li>
                     </true>
                     <false>
                         <li class="page-item"><a class="page-link" href="?page={{@current_page-1}}">Prev</a></li>
-                        <li class="page-item"><a class="page-link" href="?page=1">&#129120;</a>
+                        <li class="page-item"><a class="page-link" href="?page=1" style="display: flex; align-items: center; height: 100%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                            </svg> <!-- left arrow -->
+                        </a></li>
                     </false>
                     </check>
 
@@ -201,12 +209,20 @@
                     
                     <check if="{{ @current_page >= @invoices['count'] }}">
                     <true>
-                        <li class="page-item next disabled"><a class="page-link" href="#">&#129122;</a>
-                        <li class="page-item next disabled"><a class="page-link" href="#">Next</a>
+                        <li class="page-item next disabled"><a class="page-link" href="#" style="display: flex; align-items: center; height: 100%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                            </svg><!-- right arrow -->
+                        </a></li>
+                        <li class="page-item next disabled"><a class="page-link" href="#">Next</a></li>
                     </true>
                     <false>
-                        <li class="page-item next"><a class="page-link" href="?page={{ @invoices['count'] }}">&#129122;</a>
-                        <li class="page-item next"><a class="page-link" href="?page={{@current_page+1}}">Next</a>
+                        <li class="page-item next"><a class="page-link" href="?page={{ @invoices['count'] }}" style="display: flex; align-items: center; height: 100%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                            </svg><!-- right arrow -->
+                        </a></li> 
+                        <li class="page-item next"><a class="page-link" href="?page={{@current_page+1}}">Next</a></li>
                     </false>
                     </check>
                
