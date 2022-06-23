@@ -76,8 +76,7 @@ class Database extends Controller{
                     }
                 } $content .="\n\n\n";
             }
-            //$backup_name = $backup_name ? $backup_name : $name."___(".date('H-i-s')."_".date('d-m-Y').")__rand".rand(1,11111111).".sql";
-            $backup_name = "backups/".$name.".sql";
+            $backup_name = "backups/".$name."_".date('Y-m-d').".sql";
             // header('Content-Type: application/octet-stream');   
             // header("Content-Transfer-Encoding: Binary"); 
             // header("Content-disposition: attachment; filename=\"".$backup_name."\"");  
@@ -86,14 +85,8 @@ class Database extends Controller{
             $handle = fopen($backup_name,'w+');
             fwrite($handle,$content);
             fclose($handle);
-
-
-
-
-            // echo $content; exit;
         }
 
-        
         Export_Database($mysqlHostName,$mysqlUserName,$mysqlPassword,$DbName,  $tables=false, $backup_name=false );
 
 
