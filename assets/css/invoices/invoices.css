@@ -3,6 +3,12 @@
     margin-bottom: .1rem !important;
 }
 
+
+/* badges */
+.badge-normal{ color: #333; }
+.badge-storno{ color: #333; background-color: #f6f6f6 !important; }
+.badge-cancelled{ color: #333; background-color: #ff979722 !important; }
+
 /* AUTOCOMPLETE */
 .client-name-field{ position: relative; }
 .client-name-suggestion{

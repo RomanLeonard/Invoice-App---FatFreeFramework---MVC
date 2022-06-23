@@ -2,11 +2,17 @@
 
 class Invoices_model extends Model{
 
-	function get_invoices($page){
+	function get_invoices($page, $query){
 		$f3 = Base::instance();
 		$db = $f3->get('db.instance');
+
 		$invoices_rs = new DB\SQL\Mapper($db,'invoices');
-		$invoices = $invoices_rs->paginate($page-1, 20, array(), array('order'=>'date DESC'));
+		$invoices = $invoices_rs->paginate($page-1, 20, array("number LIKE CONCAT('%',:number,'%') OR JSON_UNQUOTE(JSON_EXTRACT(client, '$.name')) LIKE CONCAT('%',:name,'%')", 
+			array(
+				':number' => (int) $query,
+				':name' => $query
+			)
+		), array('order'=>'number DESC'));
 		
         return $invoices;
 	} // get invoices list
@@ -103,5 +109,49 @@ class Invoices_model extends Model{
 		$db = $f3->get('db.instance');
 		$rs = $db->exec("SELECT * FROM `clients` WHERE `name` LIKE '%$name%' LIMIT 6");
 		return $rs;
+	}
+
+	function storno_invoice_by_id($invoice_id){
+		$f3 = Base::instance();
+		$db = $f3->get('db.instance');
+		
+		// get invoice to storno
+		$invoice = $db->exec("SELECT * FROM invoices WHERE id=?", $invoice_id);
+
+		// check if invoice is of type 'normal'
+		if($invoice[0]['status'] == 'normal'){
+			// get last invoice number for new entry
+			$last_invoice_number = self::get_last_invoice_number();
+
+			// prepare storno items
+			$items = json_decode($invoice[0]['items']);
+			foreach($items as $index=>$item){
+				$storno_item[$index]['item_name'] = $item->item_name;
+				$storno_item[$index]['item_um'] = $item->item_um;
+				$storno_item[$index]['item_qty'] = $item->item_qty;
+				$storno_item[$index]['item_price'] = ($item->item_price > 0) ? -1 * abs($item->item_price) : 1 * abs($item->item_price);
+			}
+
+			// create new entry
+			$rs_invoice = new DB\SQL\Mapper($db,'invoices');
+			$rs_invoice->serial = 'BIZ';
+			$rs_invoice->number = ++$last_invoice_number;
+			$rs_invoice->date   = date('Y-m-d');
+			$rs_invoice->client = $invoice[0]['client'];
+			$rs_invoice->items  = json_encode($storno_item);
+			$rs_invoice->shipping_price  = ($invoice[0]['shipping_price'] > 0) ? -1 * abs($invoice[0]['shipping_price']) : 1 * abs($invoice[0]['shipping_price']);
+			$rs_invoice->price_total  	 = ($invoice[0]['price_total'] > 0) ? -1 * abs($invoice[0]['price_total']) : 1 * abs($invoice[0]['price_total']);
+			$rs_invoice->status 		 = 'storno';
+			$rs_invoice->save();
+			$rs_invoice->reset();
+
+			return 'success';
+		}
+		// if invoice is of type 'storno'
+		elseif($invoice[0]['status'] == 'storno'){ return 'error-storno'; }
+		// if invoice is of type 'cancelled'
+		elseif($invoice[0]['status'] == 'cancelled'){ return 'error-cancelled'; }
+		// unknown type error
+		else{ return 'error-unknown'; }
 	}
 }

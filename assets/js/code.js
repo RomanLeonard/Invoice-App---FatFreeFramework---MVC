@@ -13,18 +13,4 @@ $(document).ready(function(){
         });
     });
 
-    // set navbar item active by current link
-    switch (window.location.href) {
-        case $('.navbar .invoice').prop('href')+'/': // 
-            $('.navbar .invoice').addClass('active');
-            break;
-        case $('.navbar .clients').prop('href'):
-            $('.navbar .clients').addClass('active');
-            break;
-        case $('.navbar .statistics').prop('href'):
-            $('.navbar .statistics').addClass('active');
-            break;
-        default:
-            break;
-    }
 });

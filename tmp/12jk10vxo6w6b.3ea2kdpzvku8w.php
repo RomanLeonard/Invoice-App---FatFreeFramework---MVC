@@ -1,6 +1,6 @@
 <div class="content mb-5">
     <div class="row">
-        <div class="col-12 col-lg-6 mx-auto">
+        <div class="col-12 col-lg-8 mx-auto">
 
             <div class="alert alert-success text-center">
                 <span class="badge rounded-pill text-bg-success" style="font-weight: normal">

@@ -1,12 +1,12 @@
 <div class="page-title">
     <div class="row mx-auto">
-        <div class="col-12 col-lg-11 mx-auto">
+        <div class="col-12 col-lg-8 mx-auto">
             <div class="row">
                 <div class="col-2 col-md-3">
                     <!-- back button -->
                 </div>
-                <div class="col-8 col-md-6">
-                    <h1><?= ($PAGE_TITLE) ?></h1>
+                <div class="col-8 col-md-6 title">
+                    <span><?= ($PAGE_TITLE) ?></span>
                 </div>
                 <div class="col-12 col-md-3 mt-3 mt-md-0">
                     <!-- utilities -->
@@ -17,8 +17,7 @@
                                 <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
                             </svg>    
                             <span>new invoice</span>
-                        </div>
-                          
+                        </div> 
                     </a>
                 </div>
             </div>

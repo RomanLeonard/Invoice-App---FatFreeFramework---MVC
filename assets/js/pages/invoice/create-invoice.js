@@ -23,13 +23,15 @@ $(document).ready(function(){
 			$('.client-name-suggestion').css('display', 'block');
 
             $.each(clients,function( index ) {
+                var client_mobile = (clients[index].mobile != '') ? `<span><span class="small-text">TEL-</span>`+clients[index].mobile+`</span>` : `<span></span>`;
+                var client_cui = (clients[index].cui != '') ? `<span><span class="small-text">CUI-</span>`+clients[index].cui+`</span>` : `<span></span>`;
                 $('.client-name-suggestion').append(`
                     <div class="item">
                         <input type="hidden" name="client_autocomplete_index" value="`+index+`">
                         <span>`+clients[index].name+`</span>
                         <span class="small-text">`+clients[index].address+`</span>
-                        <span><span class="small-text">TEL-</span>`+clients[index].mobile+`</span>
-                        <span><span class="small-text">CUI-</span>`+clients[index].cui+`</span>
+                        `+ client_mobile 
+                        + client_cui + `
                     </div>
                 `)
             });
@@ -147,14 +149,13 @@ $(document).ready(function(){
 
             if(data == 'success'){
                 notification('success', 'New invoice inserted successfuly.');
-                // setTimeout(function(){
-                //     location.reload();
-                // }, 1500)
+                setTimeout(function(){
+                    location.reload();
+                }, 1500)
             } else{ notification('danger', 'An error has occured.'); }
         });
 
     });
     
-  
 });
   

@@ -141,7 +141,7 @@
             </table> 
         </div>
         <div class="invoice-footer">
-            <div class="content" style="display: grid; grid-template-columns: 30mm 108.3mm 59.7mm; border-bottom: 1.5px solid #000;;">
+            <div class="content" style="display: grid; grid-template-columns: 30mm 108.35mm 59.65mm; border-bottom: 1.5px solid #000;;">
                 <div class="left" style="border-right: 1.5px solid #000; border-left: 1.5px solid #000; padding: 2px 0 0 3px;">
                     Semnatura si stampila furnizor
                 </div>
@@ -155,7 +155,7 @@
                     <div style="padding: 2px 0 0 3px;">Semnaturile:</div>
                 </div>
                 <div class="right" style="border-right: 1.5px solid #000;">
-                    <div style="display: grid; grid-template-columns: 19.7mm 39mm; height: 16mm">
+                    <div style="display: grid; grid-template-columns: 19.75mm 39mm; height: 16mm">
                         <div style="border-right: 1.5px solid #000; display: flex; align-items: center; padding: 0 0 0 3px"><span>Total</span></div>
                         <div style="text-align: right; display: flex; align-items: center; justify-content: flex-end; margin-right: 3px;"><span><?= ($invoice['invoice']['price_total']) ?></span></div>
                     </div>

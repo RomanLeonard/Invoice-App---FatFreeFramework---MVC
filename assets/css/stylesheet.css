@@ -19,6 +19,14 @@ h1{ font-size: 20px !important; }
     text-decoration: underline;
 }
 
+#universal-search{
+    background-color: #e6bc68;
+    border-color: #543a052e;
+}
+#universal-search::placeholder{
+    color: #987838;
+}
+
 .page-title{
     width: 100%;
     text-align: center;
@@ -42,12 +50,12 @@ h1{ font-size: 20px !important; }
 
 /* TABLE */
 .table tbody tr:hover > td{ background-color: var(--primary-color); }
-.table tbody tr:hover > td:first-of-type{ 
+.table tbody tr td:first-of-type{ 
     border-left-style: solid;
     border-top-left-radius: 10px; 
     border-bottom-left-radius: 10px;
 }
-.table tbody tr:hover > td:last-of-type{ 
+.table tbody tr td:last-of-type{ 
     border-left-style: solid;
     border-top-right-radius: 10px; 
     border-bottom-right-radius: 10px;

@@ -2,7 +2,7 @@
 
 class Invoices extends Controller{
 
-	function list_invoices(){
+	function list_invoices_render(){
 		$f3 = Base::instance();
 		$model = new Invoices_model;
 
@@ -10,15 +10,22 @@ class Invoices extends Controller{
 			$page = $f3->get('GET.page');
 		} else { $page = 1; }
 
-		$f3->set('invoices', $model->get_invoices($page));
+		if($f3->get('GET.query')){
+			$query = $f3->get('GET.query');
+		} else { $query = ''; }
+
+		$f3->set('invoices', $model->get_invoices($page, $query));
 		$f3->set('current_page', $page);	
+		$f3->set('query', $query);	
 
 		$f3->set('PAGE_TITLE', 'Invoices list');
 		$f3->set('CSS_PATH', 'assets/css/invoices/invoices.css');
 		$f3->set('JS_PATH', 'assets/js/pages/invoice/list-invoices.js');
+		$f3->set('ACTIVE_PAGE', 'invoices');
 
 		$f3->set('title_utility','page-utility/invoice/util_list_invoice_view.php');
 		$f3->set('content','pages/invoice/list_invoices_view.php');
+
 	}
 
 
@@ -37,8 +44,9 @@ class Invoices extends Controller{
 		
 		$f3->set('title_utility','page-utility/invoice/util_create_invoice_view.php');
 		$f3->set('content','pages/invoice/create_invoice_view.php');
-		
 	}
+	
+
 	// create invioce action
 	function create_invoice_action(){
 		$f3 = Base::instance();
@@ -88,6 +96,7 @@ class Invoices extends Controller{
 		
 	}
 
+
 	// PRINT INVOICE
 	function pdf_invoice_render(){
 		$f3 = Base::instance();
@@ -100,15 +109,23 @@ class Invoices extends Controller{
 	}
 
 
-	// CLIENT DATA AUTOCOMPLETE
+	// client autocomplete
 	function autocomplete(){
 		$f3 = Base::instance();
 		$model = new Invoices_model;
 		$name = $f3->get('POST.name');
-
 		$clients = $model->get_client_for_autocomplete($name);
-
 		echo json_encode($clients);
+	}
+
+
+	// STORNO INVOICE
+	function storno_invoice_action(){
+		$f3 = Base::instance();
+		$model = new Invoices_model;
+		$invoice_id = $f3->get('POST.invoice_id');
+		$storno_action = $model->storno_invoice_by_id($invoice_id);
+		echo json_encode($storno_action);
 	}
 
 }
