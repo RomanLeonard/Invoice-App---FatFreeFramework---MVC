@@ -10,12 +10,12 @@
                                 <th style="max-width: 35px; width: 35px;">#</th>
                                 <th style="max-width: 250px;">Name</th>
                                 <th style="max-width: 316px; width: 315px;">Address</th>
-                                <th style="">Phone</th>
-                                <th style="">Email</th>
-                                <th style="">CUI</th>
-                                <th style="">ONRC</th>
-                                <th style="">IBAN</th>
-                                <th style="">Bank</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>CUI</th>
+                                <th>ONRC</th>
+                                <th>IBAN</th>
+                                <th>Bank</th>
                                 <th style="min-width: 140px; max-width: 141px; width: 140px;">Options</th>
                             </tr>
                         </thead>
