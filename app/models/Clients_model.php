@@ -7,7 +7,7 @@ class Clients_model extends Model{
 		$db = $f3->get('db.instance');
 
 		$rs = new DB\SQL\Mapper($db,'clients');
-		$clients = $rs->paginate($page-1, 3, array("name LIKE CONCAT('%',:name,'%') OR address LIKE CONCAT('%',:address,'%') OR mobile LIKE CONCAT('%',:mobile,'%') ",
+		$clients = $rs->paginate($page-1, 20, array("name LIKE CONCAT('%',:name,'%') OR address LIKE CONCAT('%',:address,'%') OR mobile LIKE CONCAT('%',:mobile,'%') ",
 			array(
 				':name' => $query,
 				':address' => $query,
