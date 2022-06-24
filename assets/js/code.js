@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 
     // BACKUP
-    $('.backup-btn').on('click', function(){
+    function BACKUP_DATABASE(){
         $.ajax({
             method: "GET",
             url: "database-backup",
@@ -23,12 +23,32 @@ $(document).ready(function(){
             data: { AJAX: true }
         })
         .done(function( data ) {
-            if(data == 'success'){
-                notification('success', 'Success! Database has been successfully backed-up.')
-            }
-                
-        });
+            notification('success', 'Success! Your database will automatically be downloaded in 2 seconds.');
 
+            setTimeout(() => {
+                var URL = window.location.origin + $('.backup-btn').attr('href') + "/" + data;
+                window.location = URL
+
+                setTimeout(() => {
+                    $.ajax({
+                        method: "GET",
+                        url: "database-clear-backups",
+                        dataType: "json",
+                        data: { AJAX: true }
+                    }).done(function(data){ 
+                        notification(data.type, data.message) 
+                    })
+                }, 2000);
+            }, 2050);
+        });
+    }
+
+
+
+
+    $('.backup-btn').on('click', function(e){
+        e.preventDefault();
+        BACKUP_DATABASE();
     });
 
 });

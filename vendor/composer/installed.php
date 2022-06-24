@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '299be2da3fb300b63327d0c923f9790a8f1922f3',
+        'reference' => '110997672771d80b7fc51936520aea8b363e2355',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '299be2da3fb300b63327d0c923f9790a8f1922f3',
+            'reference' => '110997672771d80b7fc51936520aea8b363e2355',
             'dev_requirement' => false,
         ),
         'bcosca/fatfree-core' => array(
