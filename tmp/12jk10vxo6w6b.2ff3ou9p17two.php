@@ -46,7 +46,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="database-backup?AJAX=true">Backup</a>
+              <a class="nav-link backup-btn" href="#">Backup</a>
             </li>
 
           </ul>

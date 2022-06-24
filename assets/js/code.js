@@ -13,4 +13,22 @@ $(document).ready(function(){
         });
     });
 
+
+    // BACKUP
+    $('.backup-btn').on('click', function(){
+        $.ajax({
+            method: "GET",
+            url: "database-backup",
+            dataType: "json",
+            data: { AJAX: true }
+        })
+        .done(function( data ) {
+            if(data == 'success'){
+                notification('success', 'Success! Database has been successfully backed-up.')
+            }
+                
+        });
+
+    });
+
 });
