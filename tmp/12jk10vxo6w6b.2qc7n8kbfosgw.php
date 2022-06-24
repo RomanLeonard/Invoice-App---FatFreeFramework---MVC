@@ -8,7 +8,7 @@
                         <thead>
                             <tr>
                                 <th style="max-width: 35px; width: 35px;">#</th>
-                                <th style="max-width: 250px;">Name</th>
+                                <th style="min-width: 250px; width: 250px; max-width: 251px;">Name</th>
                                 <th style="max-width: 316px; width: 315px;">Address</th>
                                 <th>Phone</th>
                                 <th>Email</th>
@@ -23,21 +23,45 @@
                             <?php $ctr=0; foreach (($clients['subset']?:[]) as $client): $ctr++; ?>
                             
                                 <tr>
+                                    <input type="hidden" name="client_id" value="<?= ($client->id) ?>">
                                     <td><span><?= ($ctr) ?></span></td>
-                                    <td><span><?= ($client->name) ?></span></td>
+                                    <td><span class="table-client-name"><?= ($client->name) ?></span></td>
                                     <td><span class="small-text"><?= ($client->address) ?></span></td>
-                                    <td><span><?= ($client->mobile) ?></span></td>
-                                    <td><span><?= ($client->email) ?></span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td>
-                                        <input type="hidden" name="invoice_id" value="<?= ($invoice->id) ?>">
+                                        <?php if ($client->mobile != ''): ?>
+                                            <span><?= ($client->mobile) ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($client->email != ''): ?>
+                                            <span><?= ($client->email) ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($client->cui != ''): ?>
+                                            <span><?= ($client->cui) ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($client->onrc != ''): ?>
+                                            <span><?= ($client->onrc) ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($client->iban != ''): ?>
+                                            <span><?= ($client->iban) ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                    <?php if ($client->bank != ''): ?>
+                                            <span><?= ($client->bank) ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
                                         <div style="width: 100%; text-align: left">
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-outline-primary" href="#">edit</a>
-                                                <a class="btn btn-outline-danger" href="#" style="margin-left: 3px;">delete</a>
+                                                <a class="btn btn-outline-primary edit-client-btn" href="client-edit/<?= ($client->id) ?>">edit</a>
+                                                <a class="btn btn-outline-danger delete-client-btn"style="margin-left: 3px;">delete</a>
                                             </div>
                                             
                                         </div>
@@ -53,6 +77,25 @@
             
         </div>
     </div>
+</div>
+
+
+<div class="modal fade" id="clients-modal" tabindex="-1" aria-labelledby="clients-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="clients-modal">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger modal-delete-btn">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 

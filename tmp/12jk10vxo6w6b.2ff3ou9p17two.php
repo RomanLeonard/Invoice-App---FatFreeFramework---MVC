@@ -10,8 +10,8 @@
   <!-- tweaker css -->
   <link rel="stylesheet" href="assets/css/stylesheet.css">
   <!-- custom css -->
-  <?php if ($CSS_PATH): ?>
-    <link rel="stylesheet" href="<?= ($CSS_PATH) ?>">
+  <?php if (@$CSS_PATH): ?>
+    <link rel="stylesheet" href="<?= (@$CSS_PATH) ?>">
   <?php endif; ?>
   
   <title>invoice app</title>
@@ -95,8 +95,8 @@
   <!-- custom js -->
   <script src="assets/js/notification.js" type="text/javascript"></script>
   <script src="assets/js/code.js" type="text/javascript"></script>
-  <?php if ($JS_PATH): ?>
-    <script src="<?= ($JS_PATH) ?>" type="text/javascript"></script>
+  <?php if (@$JS_PATH): ?>
+    <script src="<?= (@$JS_PATH) ?>" type="text/javascript"></script>
   <?php endif; ?>
   
 </body>
