@@ -43,7 +43,7 @@
                 <a class="nav-link <?= ((@$ACTIVE_PAGE == 'clients') ? 'active' : '') ?>" href="clients">Clients</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?= ((@$ACTIVE_PAGE == 'statistics') ? 'active' : '') ?> disabled" href="statistics">Statistics</a>
+                <a class="nav-link <?= ((@$ACTIVE_PAGE == 'statistics') ? 'active' : '') ?>" href="statistics">Statistics</a>
               </li>
 
               <!-- THIS IS FOR TEST ONLY !!! -->
@@ -91,7 +91,11 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <!-- bootstrap-js -->
   <script src="assets/js/bootstrap/bootstrap.bundle.min.js" type="text/javascript"></script>
-  
+  <!-- Chart.js -->
+  <?php if (@$ACTIVE_PAGE == 'statistics'): ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+  <?php endif; ?>
+
   <!-- custom js -->
   <script src="assets/js/notification.js" type="text/javascript"></script>
   <script src="assets/js/code.js" type="text/javascript"></script>

@@ -134,8 +134,8 @@
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-outline-primary invoice-edit-btn" href="#">edit</a> <!-- edit -->
                                                 <check if="{{ @invoice->status == 'storno' }}">
-                                                    <true><a class="btn btn-outline-dark invoice-storno-btn disabled" style="margin-right: 4px; margin-left: 4px;">storno</a></true>
-                                                    <false><a class="btn btn-outline-dark invoice-storno-btn" style="margin-right: 4px; margin-left: 4px;">storno</a></false>
+                                                    <true><a class="btn btn-outline-dark invoice-storno-btn disabled" style="margin-right: 4px; margin-left: 2.5px;">storno</a></true>
+                                                    <false><a class="btn btn-outline-dark invoice-storno-btn" style="margin-right: 4px; margin-left: 2.5px;">storno</a></false>
                                                 </check> <!-- storno -->
                                                 <check if="{{ @invoice->status == 'cancelled' }}">
                                                     <true><a class="btn btn-outline-danger invoice-cancel-btn disabled" href="#">cancel</a></true>

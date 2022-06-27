@@ -133,8 +133,8 @@
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-outline-primary invoice-edit-btn" href="#">edit</a> <!-- edit -->
                                                 <?php if ($invoice->status == 'storno'): ?>
-                                                    <a class="btn btn-outline-dark invoice-storno-btn disabled" style="margin-right: 4px; margin-left: 4px;">storno</a>
-                                                    <?php else: ?><a class="btn btn-outline-dark invoice-storno-btn" style="margin-right: 4px; margin-left: 4px;">storno</a>
+                                                    <a class="btn btn-outline-dark invoice-storno-btn disabled" style="margin-right: 4px; margin-left: 2.5px;">storno</a>
+                                                    <?php else: ?><a class="btn btn-outline-dark invoice-storno-btn" style="margin-right: 4px; margin-left: 2.5px;">storno</a>
                                                 <?php endif; ?> <!-- storno -->
                                                 <?php if ($invoice->status == 'cancelled'): ?>
                                                     <a class="btn btn-outline-danger invoice-cancel-btn disabled" href="#">cancel</a>
