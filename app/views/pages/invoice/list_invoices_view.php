@@ -126,7 +126,7 @@
                                             </svg></span>
                                         </div>
                                     </td>
-                                    <td><span>{{ @invoice->shipping_price }}</span></td>
+                                    <td><span>{{ (@invoice->shipping_price == 'none') ? '-' : @invoice->shipping_price }}</span></td>
                                     <td><span>{{ @invoice->price_total }}</span></td>
                                     <td>
                                         <input type="hidden" name="invoice_id" value="{{ @invoice->id }}">

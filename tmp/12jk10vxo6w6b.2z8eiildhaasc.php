@@ -115,17 +115,16 @@
                         <?php $invoice_items = $ctr; ?>
                     <?php endforeach; ?>
                     
-                    <?php if ($invoice['invoice']['shipping_price'] != 0): ?>
+                    <?php if ($invoice['invoice']['shipping_price'] != 'none'): ?>
                         
                             <tr class="item">
                                 <td class="text-center"><?= (++$invoice_items) ?></td>
                                 <td class="text-left" style="padding-left: 3px;">Taxa de transport</td>
-                                <td class="text-center">buc</td>
+                                <td class="text-center">-</td>
                                 <td class="text-center">1</td>
                                 <td class="text-right" style="padding-right: 3px;"><?= ($invoice['invoice']['shipping_price']) ?></td>
                                 <td class="text-right" style="padding-right: 3px;"><?= ($invoice['invoice']['shipping_price']) ?></td>
                             </tr>
-                        
                         
                     <?php endif; ?>
             

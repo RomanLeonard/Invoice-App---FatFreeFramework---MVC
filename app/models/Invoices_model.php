@@ -79,7 +79,7 @@ class Invoices_model extends Model{
 		$rs_invoice->client = json_encode($client);
 		$rs_invoice->items  = json_encode($invoice_items);
 		$rs_invoice->shipping_price  = $invoice_shipping_price;
-		$rs_invoice->price_total  	 = $invoices_total_price + $invoice_shipping_price;
+		$rs_invoice->price_total  	 = ($invoice_shipping_price != 'none') ? $invoices_total_price + $invoice_shipping_price : $invoices_total_price;
 		$rs_invoice->status 		 = 'normal';
 		$rs_invoice->save();
 		$rs_invoice->reset();

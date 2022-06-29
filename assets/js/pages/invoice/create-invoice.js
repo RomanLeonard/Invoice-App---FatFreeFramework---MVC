@@ -139,7 +139,7 @@ $(document).ready(function(){
                 'client_email': ( $('input[name="client_email"]').val() ) ? $('input[name="client_email"]').val() : '',
 
                 'invoice_number': $('#last_invoice_number').text(),
-                'invoice_shipping_price': ( $('input[name="invoice_shipping_price"]').val() ) ? $('input[name="invoice_shipping_price"]').val() : 0,
+                'invoice_shipping_price': ( $('input[name="invoice_shipping_price"]').val() != '' ) ? $('input[name="invoice_shipping_price"]').val() : 'none',
 
                 'invoice_items': items,
                 'invoices_total_price': invoices_total_price

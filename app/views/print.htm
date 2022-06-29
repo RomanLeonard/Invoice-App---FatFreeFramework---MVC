@@ -115,18 +115,17 @@
                         {~ $invoice_items = @ctr; ~}
                     </repeat>
                     
-                    <check if="{{ @invoice['invoice']['shipping_price'] != 0 }}">
+                    <check if="{{ @invoice['invoice']['shipping_price'] != 'none' }}">
                         <true>
                             <tr class="item">
                                 <td class="text-center">{{ ++$invoice_items }}</td>
                                 <td class="text-left" style="padding-left: 3px;">Taxa de transport</td>
-                                <td class="text-center">buc</td>
+                                <td class="text-center">-</td>
                                 <td class="text-center">1</td>
                                 <td class="text-right" style="padding-right: 3px;">{{ @invoice['invoice']['shipping_price'] }}</td>
                                 <td class="text-right" style="padding-right: 3px;">{{ @invoice['invoice']['shipping_price'] }}</td>
                             </tr>
                         </true>
-                        
                     </check>
             
                     <tr class="empty-space">
