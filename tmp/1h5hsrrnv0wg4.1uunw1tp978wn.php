@@ -17,22 +17,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <repeat group="{{ @invoices['subset'] }}" value="{{ @invoice }}">
-                            {~ $client_JSON = @invoice->client;
+                            <?php foreach (($invoices['subset']?:[]) as $invoice): ?>
+                            <?php $client_JSON = $invoice->client;
                                 $decodedText = html_entity_decode($client_JSON);  
                                 $client = json_decode($decodedText, true);
-                                $items_JSON = @invoice->items;
+                                $items_JSON = $invoice->items;
                                 $decodedText = html_entity_decode($items_JSON);  
-                                $items = json_decode($decodedText, true);                            
-                            ~}
+                                $items = json_decode($decodedText, true); ?>
                                 <tr>
                                     <td>
-                                        <div style="display:flex;align-items:center;font-weight:normal!important;" class="badge rounded-pill badge-{{ @invoice->status }}">
-                                            <span>{{ str_pad(@invoice->number, @USER_SETTINGS_INVOICE_NUMBER, "0", STR_PAD_LEFT) }}</span>
-                                            <span class="small-text" style="margin-left: 5px;">{{ @invoice->serial }}</span>
+                                        <div style="display:flex;align-items:center;font-weight:normal!important;" class="badge rounded-pill badge-<?= ($invoice->status) ?>">
+                                            <span><?= (str_pad($invoice->number, $USER_SETTINGS_INVOICE_NUMBER, "0", STR_PAD_LEFT)) ?></span>
+                                            <span class="small-text" style="margin-left: 5px;"><?= ($invoice->serial) ?></span>
                                         </div>
                                     </td>
-                                    <td>{{ date('d/m/Y', strtotime(@invoice->date)) }}</td>
+                                    <td><?= (date('d/m/Y', strtotime($invoice->date))) ?></td>
                                     <td class="table-details">
                                         <div class="table-details-expanded" style="max-width: 510px;">
                                             <div class="card">
@@ -40,48 +39,48 @@
                                                     <div class="info">
                                                         <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
                                                             <span class="small-text">Name:</span>
-                                                            <span class="small-text" style="text-align:right;">{{ $client['name'] }}</span>
+                                                            <span class="small-text" style="text-align:right;"><?= ($client['name']) ?></span>
                                                         </div>
                                                         <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
                                                             <span class="small-text">Address:</span>
-                                                            <span class="small-text" style="text-align:right;">{{ $client['address'] }}</span>
+                                                            <span class="small-text" style="text-align:right;"><?= ($client['address']) ?></span>
                                                         </div>
-                                                        <check if="{{ $client['cui'] != '' }}">
+                                                        <?php if ($client['cui'] != ''): ?>
                                                             <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
                                                                 <span class="small-text">CUI:</span>
-                                                                <span class="small-text" style="text-align:right;">{{ $client['cui'] }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($client['cui']) ?></span>
                                                             </div>
-                                                        </check>
-                                                        <check if="{{ $client['onrc'] != '' }}">
+                                                        <?php endif; ?>
+                                                        <?php if ($client['onrc'] != ''): ?>
                                                             <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
                                                                 <span class="small-text">ONRC:</span>
-                                                                <span class="small-text" style="text-align:right;">{{ $client['onrc'] }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($client['onrc']) ?></span>
                                                             </div>
-                                                        </check>
-                                                        <check if="{{ $client['phone'] != '' }}">
+                                                        <?php endif; ?>
+                                                        <?php if ($client['phone'] != ''): ?>
                                                             <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
                                                                 <span class="small-text">Phone:</span>
-                                                                <span class="small-text" style="text-align:right;">{{ $client['phone'] }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($client['phone']) ?></span>
                                                             </div>
-                                                        </check>
-                                                        <check if="{{ $client['email'] != '' }}">
+                                                        <?php endif; ?>
+                                                        <?php if ($client['email'] != ''): ?>
                                                             <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
                                                                 <span class="small-text">Email:</span>
-                                                                <span class="small-text" style="text-align:right;">{{ $client['email'] }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($client['email']) ?></span>
                                                             </div>
-                                                        </check>
-                                                        <check if="{{ $client['iban'] != '' }}">
+                                                        <?php endif; ?>
+                                                        <?php if ($client['iban'] != ''): ?>
                                                             <div style="display: grid; grid-template-columns: 1fr 3fr; border-bottom: 0.5px solid #ddd;">
                                                                 <span class="small-text">IBAN:</span>
-                                                                <span class="small-text" style="text-align:right;">{{ $client['iban'] }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($client['iban']) ?></span>
                                                             </div>
-                                                        </check>
-                                                        <check if="{{ $client['bank'] != '' }}">
+                                                        <?php endif; ?>
+                                                        <?php if ($client['bank'] != ''): ?>
                                                             <div style="display: grid; grid-template-columns: 1fr 3fr;">
                                                                 <span class="small-text">Bank:</span>
-                                                                <span class="small-text" style="text-align:right;">{{ $client['bank'] }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($client['bank']) ?></span>
                                                             </div>
-                                                        </check>
+                                                        <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -89,8 +88,8 @@
                                             
                                         </div>
                                         <div class="btn btn-outline table-details-btn" style="display: block; width: 100%; text-align: left; position: relative;">
-                                            <span style="display: block;">{{ $client['name'] }}</span>
-                                            <span class="small-text" style="display: block;">{{ $client['address'] }}</span>
+                                            <span style="display: block;"><?= ($client['name']) ?></span>
+                                            <span class="small-text" style="display: block;"><?= ($client['address']) ?></span>
 
                                             <span class="expand-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-expand" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"/>
@@ -102,66 +101,66 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="info" style="grid-template-columns: 2fr 1fr 1fr; align-items: center;">
-                                                        <repeat group="{{ $items }}" value="{{ @item }}" counter="{{ @ctr }}">
-                                                            {~ if(@ctr == 1){  
-                                                                @first_item_name = @item['item_name'];
-                                                                @first_item_price = @item['item_price'];
-                                                            } ~}
+                                                        <?php $ctr=0; foreach (($items?:[]) as $item): $ctr++; ?>
+                                                            <?php if($ctr == 1){  
+                                                                $first_item_name = $item['item_name'];
+                                                                $first_item_price = $item['item_price'];
+                                                            } ?>
                                                             <div style="display: grid; grid-template-columns: 3fr 1fr 1fr; border-bottom: 0.5px solid #ddd; align-items: center;">
-                                                                <span class="small-text">{{ @item['item_name'] }} </span>
+                                                                <span class="small-text"><?= ($item['item_name']) ?> </span>
                                                                 <span style="display: flex; flex-flow: column wrap; justify-content: center; align-items: center;"> 
-                                                                    <span class="small-text">- {{ @item['item_qty'] }} -</span>    
-                                                                    <span class="small-text">{{ @item['item_um'] }}</span>
+                                                                    <span class="small-text">- <?= ($item['item_qty']) ?> -</span>    
+                                                                    <span class="small-text"><?= ($item['item_um']) ?></span>
                                                                  </span>
-                                                                <span class="small-text" style="text-align:right;">{{ @item['item_price'] }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($item['item_price']) ?></span>
                                                             </div>
-                                                        </repeat> <!-- invice items -->
+                                                        <?php endforeach; ?> <!-- invice items -->
 
-                                                        <check if="{{ @invoice->shipping_price != 'none' }}">
+                                                        <?php if ($invoice->shipping_price != 'none'): ?>
                                                             <div style="display: grid; grid-template-columns: 3fr 1fr 1fr; align-items: center;">
                                                                 <span class="small-text">Taxa de transport</span>
                                                                 <span style="display: flex; flex-flow: column wrap; justify-content: center; align-items: center;"> 
                                                                     <span class="small-text">- 1 -</span> 
                                                                 </span>
-                                                                <span class="small-text" style="text-align:right;">{{ @invoice->shipping_price }}</span>
+                                                                <span class="small-text" style="text-align:right;"><?= ($invoice->shipping_price) ?></span>
                                                             </div>
-                                                        </check> <!-- invoice shipping -->
+                                                        <?php endif; ?> <!-- invoice shipping -->
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="btn btn-outline table-details-btn" style="display: block; width: 100%; text-align: left; position: relative;">
-                                            <span style="display: block;">{{ (@@first_item_name) ? @first_item_name : "no item" }}</span>
-                                            <span class="small-text" style="display: block;">{{ (@@first_item_price) ? @first_item_price : "0" }}</span>
+                                            <span style="display: block;"><?= ((@$first_item_name) ? $first_item_name : "no item") ?></span>
+                                            <span class="small-text" style="display: block;"><?= ((@$first_item_price) ? $first_item_price : "0") ?></span>
 
                                             <span class="expand-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-expand" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"/>
                                             </svg></span>
                                         </div>
                                     </td>
-                                    <td><span>{{ (@invoice->shipping_price == 'none') ? '-' : @invoice->shipping_price }}</span></td>
-                                    <td><span>{{ @invoice->price_total }}</span></td>
+                                    <td><span><?= (($invoice->shipping_price == 'none') ? '-' : $invoice->shipping_price) ?></span></td>
+                                    <td><span><?= ($invoice->price_total) ?></span></td>
                                     <td>
-                                        <input type="hidden" name="invoice_id" value="{{ @invoice->id }}">
+                                        <input type="hidden" name="invoice_id" value="<?= ($invoice->id) ?>">
                                         <div style="width: 100%; text-align: left">
                                             <div class="btn-group" role="group">
-                                                <check if="{{ date('Y', strtotime(@invoice->date)) <= date('Y') }}">
-                                                    <true>
-                                                        <check if="{{ date('m', strtotime(@invoice->date)) > date('m') }}">
-                                                            <true> <a class="btn btn-outline-primary invoice-edit-btn disabled" href="#">edit</a> </true>
-                                                            <false><a class="btn btn-outline-primary invoice-edit-btn" href="#">edit</a> </false>
-                                                        </check>
-                                                    </true>
-                                                    <false><a class="btn btn-outline-primary invoice-edit-btn" href="#">edit</a> </false>
-                                                </check> <!-- edit -->
-                                                <check if="{{ @invoice->status == 'storno' }}">
-                                                    <true><a class="btn btn-outline-dark invoice-storno-btn disabled" style="margin-right: 4px; margin-left: 2.5px;">storno</a></true>
-                                                    <false><a class="btn btn-outline-dark invoice-storno-btn" style="margin-right: 4px; margin-left: 2.5px;">storno</a></false>
-                                                </check> <!-- storno -->
-                                                <check if="{{ @invoice->status == 'cancelled' }}">
-                                                    <true><a class="btn btn-outline-danger invoice-cancel-btn disabled" href="#">cancel</a></true>
-                                                    <false><a class="btn btn-outline-danger invoice-cancel-btn" href="#">cancel</a></false>
-                                                </check> <!-- cancel -->
+                                                <?php if (date('Y', strtotime($invoice->date)) <= date('Y')): ?>
+                                                    
+                                                        <?php if (date('m', strtotime($invoice->date)) > date('m')): ?>
+                                                             <a class="btn btn-outline-primary invoice-edit-btn disabled" href="#">edit</a> 
+                                                            <?php else: ?><a class="btn btn-outline-primary invoice-edit-btn" href="#">edit</a> 
+                                                        <?php endif; ?>
+                                                    
+                                                    <?php else: ?><a class="btn btn-outline-primary invoice-edit-btn" href="#">edit</a> 
+                                                <?php endif; ?> <!-- edit -->
+                                                <?php if ($invoice->status == 'storno'): ?>
+                                                    <a class="btn btn-outline-dark invoice-storno-btn disabled" style="margin-right: 4px; margin-left: 2.5px;">storno</a>
+                                                    <?php else: ?><a class="btn btn-outline-dark invoice-storno-btn" style="margin-right: 4px; margin-left: 2.5px;">storno</a>
+                                                <?php endif; ?> <!-- storno -->
+                                                <?php if ($invoice->status == 'cancelled'): ?>
+                                                    <a class="btn btn-outline-danger invoice-cancel-btn disabled" href="#">cancel</a>
+                                                    <?php else: ?><a class="btn btn-outline-danger invoice-cancel-btn" href="#">cancel</a>
+                                                <?php endif; ?> <!-- cancel -->
                                                 
                                             </div>
                                             <a class="btn btn-success invoice-print-btn" style="margin-left: 15px;">
@@ -173,7 +172,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            </repeat>
+                            <?php endforeach; ?>
 
                             
                         </tbody>
@@ -210,69 +209,69 @@
     <div class="col-12" style="display: flex; justify-content: center">
         <!-- pagination -->
         <nav>
-            {~ $pagination_from = 0; ~}
-            {~ $pagination_to = 10; ~}
+            <?php $pagination_from = 0; ?>
+            <?php $pagination_to = 10; ?>
 
             <ul class="pagination">
             
-                    <check if="{{ @current_page <= 1 }}">
-                    <true>
+                    <?php if ($current_page <= 1): ?>
+                    
                         <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
                         <li class="page-item disabled"><a class="page-link" href="#" style="display: flex; align-items: center; height: 100%;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                             </svg> <!-- left arrow -->
                         </a></li>
-                    </true>
-                    <false>
-                        <li class="page-item"><a class="page-link" href="?query={{@@query}}&page={{@current_page-1}}">Prev</a></li>
-                        <li class="page-item"><a class="page-link" href="?query={{@@query}}&page=1" style="display: flex; align-items: center; height: 100%;">
+                    
+                    <?php else: ?>
+                        <li class="page-item"><a class="page-link" href="?query=<?= (@$query) ?>&page=<?= ($current_page-1) ?>">Prev</a></li>
+                        <li class="page-item"><a class="page-link" href="?query=<?= (@$query) ?>&page=1" style="display: flex; align-items: center; height: 100%;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                             </svg> <!-- left arrow -->
                         </a></li>
-                    </false>
-                    </check>
-
-                    <check if="{{ @current_page > 4 }}">
-                    <true>{~ @loop_start = @current_page-3; @loop_to = @current_page+3; ~}</true>
-                    <false>{~ @loop_start = 1; @loop_to = 7; ~}</false>
-                    </check>
-                    <loop from="{{ @i=@loop_start }}" to="{{ @i<@invoices['count']+1 }}" step="{{ @i++ }}">
-                    <check if="{{ @i <= @loop_to }}">
-                        <check if="{{ @i == @current_page}}">
-                            <true>
-                            <li class="page-item active">
-                                <a class="page-link" href="?query={{@@query}}&page={{@i}}">{{ @i }}</a>
-                            </li>
-                            </true>
-                            <false>
-                            <li class="page-item">
-                                <a class="page-link" href="?query={{@@query}}&page={{@i}}">{{ @i }}</a>
-                            </li>
-                            </false>
-                        </check>
-                    </check>
-                    </loop>
                     
-                    <check if="{{ @current_page >= @invoices['count'] }}">
-                    <true>
+                    <?php endif; ?>
+
+                    <?php if ($current_page > 4): ?>
+                    <?php $loop_start = $current_page-3; $loop_to = $current_page+3; ?>
+                    <?php else: ?><?php $loop_start = 1; $loop_to = 7; ?>
+                    <?php endif; ?>
+                    <?php for ($i=$loop_start;$i<$invoices['count']+1;$i++): ?>
+                    <?php if ($i <= $loop_to): ?>
+                        <?php if ($i == $current_page): ?>
+                            
+                            <li class="page-item active">
+                                <a class="page-link" href="?query=<?= (@$query) ?>&page=<?= ($i) ?>"><?= ($i) ?></a>
+                            </li>
+                            
+                            <?php else: ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?query=<?= (@$query) ?>&page=<?= ($i) ?>"><?= ($i) ?></a>
+                            </li>
+                            
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php endfor; ?>
+                    
+                    <?php if ($current_page >= $invoices['count']): ?>
+                    
                         <li class="page-item next disabled"><a class="page-link" href="#" style="display: flex; align-items: center; height: 100%;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                             </svg><!-- right arrow -->
                         </a></li>
                         <li class="page-item next disabled"><a class="page-link" href="#">Next</a></li>
-                    </true>
-                    <false>
-                        <li class="page-item next"><a class="page-link" href="?query={{@@query}}&page={{ @invoices['count'] }}" style="display: flex; align-items: center; height: 100%;">
+                    
+                    <?php else: ?>
+                        <li class="page-item next"><a class="page-link" href="?query=<?= (@$query) ?>&page=<?= ($invoices['count']) ?>" style="display: flex; align-items: center; height: 100%;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                             </svg><!-- right arrow -->
                         </a></li> 
-                        <li class="page-item next"><a class="page-link" href="?query={{@@query}}&page={{@current_page+1}}">Next</a></li>
-                    </false>
-                    </check>
+                        <li class="page-item next"><a class="page-link" href="?query=<?= (@$query) ?>&page=<?= ($current_page+1) ?>">Next</a></li>
+                    
+                    <?php endif; ?>
                
             </ul>
         </nav>

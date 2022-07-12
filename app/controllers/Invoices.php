@@ -120,11 +120,26 @@ class Invoices extends Controller{
 
 
 	// STORNO INVOICE
+	// get details for storno
+	function get_invoice_details(){
+		$f3 = Base::instance();
+		$model = new Invoices_model;
+		$invoice_id = $f3->get('GET.invoice_id');
+		$invoice = $model->get_invoice_details_from_db($invoice_id);
+		echo json_encode($invoice);
+	}
+
+
+	// storno invoice action
 	function storno_invoice_action(){
 		$f3 = Base::instance();
 		$model = new Invoices_model;
-		$invoice_id = $f3->get('POST.invoice_id');
-		$storno_action = $model->storno_invoice_by_id($invoice_id);
+		$invoice_id   = $f3->get('POST.invoice_id');
+		$shipping 	  = $f3->get('POST.shipping');
+		$storno_items = $f3->get('POST.items');
+		$storno_total = $f3->get('POST.storno_total');
+
+		$storno_action = $model->storno_invoice_by_id($invoice_id, $shipping, $storno_items, $storno_total);
 		echo json_encode($storno_action);
 	}
 

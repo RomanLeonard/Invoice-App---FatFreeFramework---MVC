@@ -3,9 +3,9 @@
         <div class="col-12 col-lg-8 mx-auto">
 
             <div class="alert alert-success text-center">
-                <span class="badge rounded-pill text-bg-success" style="font-weight: normal">{{ str_pad(@last_invoice_number+1, @USER_SETTINGS_INVOICE_NUMBER, "0", STR_PAD_LEFT) }}</span>
+                <span class="badge rounded-pill text-bg-success" style="font-weight: normal"><?= (str_pad($last_invoice_number+1, $USER_SETTINGS_INVOICE_NUMBER, "0", STR_PAD_LEFT)) ?></span>
                 <span class="badge rounded-pill text-bg-success" style="font-weight: normal">BIZ</span>
-                <span class="badge rounded-pill text-bg-success" style="font-weight: normal">{{ @current_date }}</span>
+                <span class="badge rounded-pill text-bg-success" style="font-weight: normal"><?= ($current_date) ?></span>
             </div>
 
             <div class="card">

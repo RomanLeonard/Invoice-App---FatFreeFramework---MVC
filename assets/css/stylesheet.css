@@ -12,6 +12,12 @@ h1{ font-size: 20px !important; }
 }
 
 
+/* Override `.row` Bootstrap class */
+.row{
+    margin-right: 0 !important;
+    margin-left:  0 !important;
+}
+
 .navbar{
     background-color: var(--primary-color) !important;
 }
@@ -64,8 +70,12 @@ h1{ font-size: 20px !important; }
 
 
 /* Table details pop-up */
+.table-details{ position: relative !important; }
 .table-details-expanded{
     position: absolute;
+    width: 100%;
+    top: 0;
+    left:0;
     box-shadow: 0 0 15px -5px rgba(0,0,0, 0.2);   
     z-index: 10000 !important;
 }

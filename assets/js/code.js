@@ -26,7 +26,7 @@ $(document).ready(function(){
             notification('success', 'Success! Your database will automatically be downloaded in 2 seconds.');
 
             setTimeout(() => {
-                var URL = window.location.origin + $('.backup-btn').attr('href') + "/" + data;
+                var URL = window.location.origin + "/" + data;
                 window.location = URL
 
                 setTimeout(() => {

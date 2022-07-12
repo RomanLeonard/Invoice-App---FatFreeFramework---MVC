@@ -34,18 +34,18 @@
   <!-- tweaker css -->
   <link rel="stylesheet" href="assets/css/stylesheet.css">
   <!-- custom css -->
-  <check if="{{ @@CSS_PATH }}">
-    <link rel="stylesheet" href="{{ @@CSS_PATH }}">
-  </check>
+  <?php if (@$CSS_PATH): ?>
+    <link rel="stylesheet" href="<?= (@$CSS_PATH) ?>">
+  <?php endif; ?>
   
   <title>inva</title>
 </head>
 <body>
-  <input type="hidden" name="global_base_url" value="{{@BASE}}">
+  <input type="hidden" name="global_base_url" value="<?= ($BASE) ?>">
 
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{ @BASE }}">
+      <a class="navbar-brand" href="<?= ($BASE) ?>">
         <svg width="100" height="30" viewBox="0 0 131 86" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M24.429 45.3295V68H16.9964V29.8182H24.1307V36.0327H24.603C25.4813 34.0109 26.8568 32.3868 28.7294 31.1605C30.6186 29.9342 32.9967 29.321 35.8636 29.321C38.4654 29.321 40.7441 29.8679 42.6996 30.9616C44.6551 32.0388 46.1714 33.6463 47.2486 35.7841C48.3258 37.9219 48.8643 40.5651 48.8643 43.7138V68H41.4318V44.6087C41.4318 41.8411 40.7109 39.6785 39.2692 38.1207C37.8274 36.5464 35.8471 35.7592 33.3281 35.7592C31.6046 35.7592 30.0717 36.1321 28.7294 36.8778C27.4036 37.6236 26.3513 38.7173 25.5724 40.1591C24.8101 41.5843 24.429 43.3078 24.429 45.3295Z" fill="black"/>
           <path d="M89.6598 30.8182L75.8139 69H67.8594L53.9886 30.8182H61.968L71.6378 60.2003H72.0355L81.6804 30.8182H89.6598Z" fill="black"/>
@@ -61,18 +61,18 @@
           <ul class="navbar-nav" style="min-width: 100%; display: flex; justify-content: space-between;">
             <div class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link {{ (@@ACTIVE_PAGE == 'invoices') ? 'active' : '' }}" href="{{ @BASE }}">Invoices</a>
+                <a class="nav-link <?= ((@$ACTIVE_PAGE == 'invoices') ? 'active' : '') ?>" href="<?= ($BASE) ?>">Invoices</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ (@@ACTIVE_PAGE == 'clients') ? 'active' : '' }}" href="clients">Clients</a>
+                <a class="nav-link <?= ((@$ACTIVE_PAGE == 'clients') ? 'active' : '') ?>" href="clients">Clients</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ (@@ACTIVE_PAGE == 'statistics') ? 'active' : '' }}" href="statistics">Statistics</a>
+                <a class="nav-link <?= ((@$ACTIVE_PAGE == 'statistics') ? 'active' : '') ?>" href="statistics">Statistics</a>
               </li>
 
               <!-- THIS IS FOR TEST ONLY !!! -->
               <li class="nav-item px-2">
-                <a class="nav-link backup-btn" href="{{ @BASE }}" style="display:flex;align-items:center;gap:5px">
+                <a class="nav-link backup-btn" href="<?= ($BASE) ?>" style="display:flex;align-items:center;gap:5px">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -100,13 +100,13 @@
   </nav>
 
   <!-- page title and utility (buttons, inputs etc.) -->
-  <include href="{{ @title_utility }}" />
+  <?php echo $this->render($title_utility,NULL,get_defined_vars(),0); ?>
   <!-- ./page title and utility (buttons, inputs etc.) -->
  
 
   <!-- content -->
   <div class="page-content">
-    <include href="{{ @content }}" />
+    <?php echo $this->render($content,NULL,get_defined_vars(),0); ?>
   </div>
     
   <!-- ./content -->
@@ -116,16 +116,16 @@
   <!-- bootstrap-js -->
   <script src="assets/js/bootstrap/bootstrap.bundle.min.js" type="text/javascript"></script>
   <!-- Chart.js -->
-  <check if="{{ @@ACTIVE_PAGE == 'statistics' }}">
+  <?php if (@$ACTIVE_PAGE == 'statistics'): ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
-  </check>
+  <?php endif; ?>
 
   <!-- custom js -->
   <script src="assets/js/notification.js" type="text/javascript"></script>
   <script src="assets/js/code.js" type="text/javascript"></script>
-  <check if="{{ @@JS_PATH }}">
-    <script src="{{ @@JS_PATH }}" type="text/javascript"></script>
-  </check>
+  <?php if (@$JS_PATH): ?>
+    <script src="<?= (@$JS_PATH) ?>" type="text/javascript"></script>
+  <?php endif; ?>
   
 </body>
 </html>

@@ -1,12 +1,16 @@
 <?php
 
 class Database_backup extends Controller{
-
+    
     // create backup
 	function create_backup(){
-        
-        $mysqli = new mysqli("localhost","root","","invoices_db"); 
-        $mysqli->select_db("invoices_db"); 
+        $f3 = Base::instance();
+
+        $mysqli = new mysqli(
+            $f3->get('db.host'), $f3->get('db.user'),
+            $f3->get('db.pass'), $f3->get('db.name')
+        ); 
+        $mysqli->select_db( $f3->get('DB_NAME') ); 
         $mysqli->query("SET NAMES 'utf8'");
 
         $queryTables    = $mysqli->query('SHOW TABLES'); 
